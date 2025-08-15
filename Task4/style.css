@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+:root {
+  --bg: linear-gradient(135deg, #0f172a, #1a1a40);
+  --card: rgba(30, 41, 59, 0.9);
+  --accent: #6d28d9;
+  --accent-hover: #7c3aed;
+  --text: #f1f5f9;
+  --muted: #cbd5e1;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  background-attachment: fixed;
+  background-size: cover;
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: var(--card);
+  backdrop-filter: blur(10px);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.logo {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a {
+  color: var(--text);
+  text-decoration: none;
+  position: relative;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav a:hover {
+  color: var(--accent);
+}
+
+.nav a:hover::after {
+  width: 100%;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  cursor: pointer;
+  color: var(--accent);
+}
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 2rem;
+  gap: 2rem;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-size: 2.8rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, var(--accent), #4f46e5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-text p {
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+}
+
+.hero-text button {
+  padding: 0.8rem 1.6rem;
+  border: none;
+  background: var(--accent);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(109,40,217,0.4);
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.hero-text button:hover {
+  transform: scale(1.05);
+  background: var(--accent-hover);
+}
+
+.hero img {
+  width: 100%;
+  max-width: 480px;
+  border-radius: 0.8rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  animation: float 3s ease-in-out infinite;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.card {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 0.8rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.card h2 {
+  margin-bottom: 0.5rem;
+  color: var(--accent);
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background: var(--card);
+  margin-top: 2rem;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@keyframes float {
+  0%, 100% {transform: translateY(0);}
+  50% {transform: translateY(-10px);}
+}
+
+@media (max-width: 992px) {
+  .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .nav {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    flex-direction: column;
+    background: var(--card);
+    width: 200px;
+    display: none;
+    padding: 1rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  .nav.active {
+    display: flex;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .cards {
+    grid-template-columns: 1fr;
+  }
+}
